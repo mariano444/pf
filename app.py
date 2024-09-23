@@ -8,6 +8,11 @@ usuarios = {
     "usuario2": {"password": "password2", "uso_restante": 5},
 }
 
+# Nueva ruta para la página de inicio
+@app.route("/", methods=["GET"])
+def home():
+    return jsonify({"message": "Bienvenido a la API. Usa /login o /verificar_uso."})
+
 @app.route("/login", methods=["POST"])
 def login():
     data = request.json
@@ -35,4 +40,4 @@ def verificar_uso():
         return jsonify({"message": "Credenciales incorrectas"}), 401
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(host="0.0.0.0", port=5000)
